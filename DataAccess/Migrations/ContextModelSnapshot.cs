@@ -42,6 +42,29 @@ namespace DataAccess.Migrations
 
                     b.ToTable("SampleEntites");
                 });
+
+            modelBuilder.Entity("Entity.Concrete.UuidEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UuidEntities");
+                });
 #pragma warning restore 612, 618
         }
     }

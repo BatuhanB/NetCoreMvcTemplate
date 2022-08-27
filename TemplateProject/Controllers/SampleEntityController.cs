@@ -9,7 +9,7 @@ namespace TemplateProject.Controllers
 {
     public class SampleEntityController : Controller
     {
-        ISampleEntityService _sampleEntityService;
+        private readonly ISampleEntityService _sampleEntityService;
 
         public SampleEntityController(ISampleEntityService sampleEntityService)
         {
@@ -27,8 +27,8 @@ namespace TemplateProject.Controllers
             };
             //List<SampleEntity> entities = new List<SampleEntity>();
             //entities.Add(sample);
-            _sampleEntityService.Add(sample);
-            List<SampleEntity> entities = _sampleEntityService.GetAll();
+            //_sampleEntityService.Add(sample);
+            var entities = _sampleEntityService.GetAll();
             return View(entities);
         }
         public IActionResult Add()

@@ -1,0 +1,31 @@
+﻿@using Entity.Concrete
+@model List<UuidEntity>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table ">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Create Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.CreateDate</td>
+                <td>@item.Status</td>
+            </tr>
+        </tbody>
+    }
+</table>
+

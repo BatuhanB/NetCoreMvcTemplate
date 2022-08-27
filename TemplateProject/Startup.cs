@@ -33,6 +33,8 @@ namespace TemplateProject
             services.AddControllersWithViews();
             services.AddSingleton<IEntityDal, SampleEntityDal>();
             services.AddSingleton<ISampleEntityService, SampleEntityManager>();
+            services.AddSingleton<IUuidEntityDal, UuidEntityDal>();
+            services.AddSingleton<IUuidEntityService, UuidEntityManager>();
 
         }
 
@@ -60,7 +62,7 @@ namespace TemplateProject
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=SampleEntity}/{action=Index}/{id?}");
+                    pattern: "{controller=UuidEntity}/{action=Index}/{id?}");
             });
         }
     }

@@ -16,6 +16,7 @@ namespace DataAccess.Concrete
         }
 
         public DbSet<SampleEntity> SampleEntites { get; set; }
+        public DbSet<UuidEntity>  UuidEntities { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{

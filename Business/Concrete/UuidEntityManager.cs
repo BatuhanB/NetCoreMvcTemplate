@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Utilities.Results.Concrete;
 
 namespace Business.Concrete
 {
@@ -18,29 +19,69 @@ namespace Business.Concrete
             _entityDal = entityDal;
         }
 
-        public void Add(UuidEntity entity)
+
+        public Result Add(UuidEntity entity)
         {
-            _entityDal.Add(entity);
+            try
+            {
+                _entityDal.Add(entity);
+                return new SuccessResult(); 
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult();
+            }
         }
 
-        public void Delete(UuidEntity entity)
+        public Result Update(UuidEntity entity)
         {
-            _entityDal.Delete(entity);
+            try
+            {
+                _entityDal.Update(entity);
+                return new SuccessResult();
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult();
+            }
         }
 
-        public List<UuidEntity> GetAll()
+        public Result Delete(int id)
         {
-            return _entityDal.GetAll();
+            try
+            {
+                var result = _entityDal.GetAll().FirstOrDefault(x => x.Id == id);
+                _entityDal.Delete(result);
+                return new SuccessResult();
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult();
+            }
         }
 
-        public void GetById(Guid id)
+        public DataResult<UuidEntity> GetById(Guid id)
         {
-           _entityDal.GetById(x=>x.Id == id);
+            try
+            {
+                return new SuccessDataResult<UuidEntity>(_entityDal.GetById(x=>x.Id == id));
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<UuidEntity>();
+            }
         }
 
-        public void Update(UuidEntity entity)
+        public DataResult<List<UuidEntity>> GetAll()
         {
-            _entityDal.Update(entity);
+            try
+            {
+                return new SuccessDataResult<List<UuidEntity>>(_entityDal.GetAll());
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<List<UuidEntity>>();
+            }
         }
     }
 }

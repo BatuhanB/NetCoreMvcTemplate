@@ -1,4 +1,5 @@
-﻿using Entity.Concrete;
+﻿using Core.Utilities.Results.Concrete;
+using Entity.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace Business.Abstract
 {
     public interface ISampleEntityService
     {
-        void Add(SampleEntity entity);
-        void Update(SampleEntity entity);
-        void Delete(SampleEntity entity);
-        void GetById(int id);
-        List<SampleEntity> GetAll();
+        Result Add(SampleEntity entity);
+        Result Update(SampleEntity entity);
+        Result Delete(int id);
+        DataResult<SampleEntity> GetById(int id);
+        DataResult<List<SampleEntity>> GetAll();
 
     }
 }

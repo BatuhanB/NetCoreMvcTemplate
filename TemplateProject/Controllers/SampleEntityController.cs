@@ -29,7 +29,11 @@ namespace TemplateProject.Controllers
             //entities.Add(sample);
             //_sampleEntityService.Add(sample);
             var entities = _sampleEntityService.GetAll();
-            return View(entities);
+            if (entities.IsSuccess)
+            {
+                return View(entities.Data);    
+            }
+            return View();
         }
         public IActionResult Add()
         {

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Utilities.Results.Concrete;
 
 namespace Business.Concrete
 {
@@ -18,29 +19,70 @@ namespace Business.Concrete
             _entityDal = entityDal;
         }
 
-        public void Add(SampleEntity entity)
+
+        public Result Add(SampleEntity entity)
         {
-             _entityDal.Add(entity);  
+            try
+            {
+                _entityDal.Add(entity);
+                return new SuccessResult(); 
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult();
+            }
+            
         }
 
-        public void Delete(SampleEntity entity)
+        public Result Update(SampleEntity entity)
         {
-           _entityDal?.Delete(entity);
+            try
+            {
+                _entityDal.Update(entity);
+                return new SuccessResult();
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult();
+            }
         }
 
-        public List<SampleEntity> GetAll()
-        {       
-            return _entityDal.GetAll();
+        public Result Delete(int id)
+        {
+            try
+            {
+                var result = _entityDal.GetAll().FirstOrDefault(x => x.Id == id);
+                _entityDal.Delete(result);
+                return new SuccessResult();
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult();
+            }
         }
 
-        public void GetById(int id)
+        public DataResult<SampleEntity> GetById(int id)
         {
-            _entityDal.GetById(x=>x.Id == id);
+            try
+            {
+                return new SuccessDataResult<SampleEntity>(_entityDal.GetById(x=>x.Id == id));
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<SampleEntity>();
+            }
         }
 
-        public void Update(SampleEntity entity)
+        public DataResult<List<SampleEntity>> GetAll()
         {
-            _entityDal.Update(entity);
+            try
+            {
+                return new SuccessDataResult<List<SampleEntity>>(_entityDal.GetAll());
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<List<SampleEntity>>();
+            }
         }
     }
 }

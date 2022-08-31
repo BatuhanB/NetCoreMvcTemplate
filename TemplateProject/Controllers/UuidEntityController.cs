@@ -25,9 +25,12 @@ namespace TemplateProject.Controllers
                 Status = true,
             };
             _uuidEntityService.Add(uuid);
-            var data = _uuidEntityService.GetAll();
-            var result = data.Where(x=>x.Status == true).ToList();
-            return View(result);
+            var result = _uuidEntityService.GetAll();
+            if (result.IsSuccess)
+            {
+                return View(result.Data);
+            }
+            return View();
         }
     }
 }

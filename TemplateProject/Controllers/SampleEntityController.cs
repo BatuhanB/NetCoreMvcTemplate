@@ -31,6 +31,8 @@ namespace TemplateProject.Controllers
             var entities = _sampleEntityService.GetAll();
             if (entities.IsSuccess)
             {
+                ViewBag.responseMessage = entities.Message;
+                Response.StatusCode = 200;
                 return View(entities.Data);    
             }
             return View();

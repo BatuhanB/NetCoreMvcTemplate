@@ -62,7 +62,7 @@ namespace TemplateProject
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=UuidEntity}/{action=Index}/{id?}");
+                    pattern: "{controller=SampleEntity}/{action=Index}/{id?}");
             });
         }
     }

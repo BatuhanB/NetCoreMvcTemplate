@@ -24,7 +24,7 @@ namespace TemplateProject.Controllers
                 CreateDate = DateTime.Now,
                 Status = true,
             };
-            _uuidEntityService.Add(uuid);
+            //var result2 = _uuidEntityService.Add(uuid);
             var result = _uuidEntityService.GetAll();
             if (result.IsSuccess)
             {

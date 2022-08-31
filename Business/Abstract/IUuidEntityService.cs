@@ -12,7 +12,7 @@ namespace Business.Abstract
     {
         Result Add(UuidEntity entity);
         Result Update(UuidEntity entity);
-        Result Delete(int id);
+        Result Delete(Guid id);
         DataResult<UuidEntity> GetById(Guid id);
         DataResult<List<UuidEntity>> GetAll();
     }

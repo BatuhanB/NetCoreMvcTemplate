@@ -27,7 +27,7 @@ namespace Business.Concrete
                 _entityDal.Add(entity);
                 return new SuccessResult(); 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new ErrorResult();
             }
@@ -40,13 +40,13 @@ namespace Business.Concrete
                 _entityDal.Update(entity);
                 return new SuccessResult();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new ErrorResult();
             }
         }
 
-        public Result Delete(int id)
+        public Result Delete(Guid id)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace Business.Concrete
                 _entityDal.Delete(result);
                 return new SuccessResult();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new ErrorResult();
             }
@@ -66,7 +66,7 @@ namespace Business.Concrete
             {
                 return new SuccessDataResult<UuidEntity>(_entityDal.GetById(x=>x.Id == id));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new ErrorDataResult<UuidEntity>();
             }
@@ -78,7 +78,7 @@ namespace Business.Concrete
             {
                 return new SuccessDataResult<List<UuidEntity>>(_entityDal.GetAll());
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new ErrorDataResult<List<UuidEntity>>();
             }

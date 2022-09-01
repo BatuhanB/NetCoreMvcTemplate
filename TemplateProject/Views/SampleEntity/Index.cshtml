@@ -1,34 +1,46 @@
 ﻿@using Entity.Concrete
+@using System.Globalization
 @model List<SampleEntity>
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>This is a sample layout page</h1>
+<div class="container">
+	<div class="align-content-center">
+		<h1>This is a sample layout page</h1>
 
-<p style="font-size: 16px">Response Message: <span style="color: red; font-weight: bold;font-size: 14px">@ViewBag.responseMessage</span></p>
+		<p style="font-size: 16px">Response Message: <span style="color: red; font-weight: bold;font-size: 14px">@ViewBag.responseMessage</span></p>
 
-<table class="table ">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Create Date</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    @foreach (var item in Model)
-    {
-        <tbody>
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.Description</td>
-                <td>@item.CreateDate</td>
-                <td>@item.Status</td>
-            </tr>
-        </tbody>
-    }
-</table>
+		<table class="table ">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Create Date</th>
+					<th>Status</th>
+					<th>Delete</th>
+					<th>Change To Passive</th>
+					<th>Update</th>
+				</tr>
+			</thead>
+			@foreach (var item in Model)
+			{
+				<tbody>
+					<tr>
+						<td>@item.Id</td>
+						<td>@item.Name</td>
+						<td>@item.Description</td>
+						<td>@DateTime.Parse(@item.CreateDate.ToString(CultureInfo.CurrentCulture)).ToString("yyyy MMMM dd")</td>
+						<td>@item.Status</td>
+						<td><a href="/SampleEntity/Delete/@item.Id" class="btn btn-danger">Delete</a></td>
+						<td><a href="/SampleEntity/ChangeFalse/@item.Id" class="btn btn-danger">To Passive</a></td>
+						<td><a href="/SampleEntity/Update/@item.Id" class="btn btn-danger">Update</a></td>
+					</tr>
+				</tbody>
+			}
+		</table>
+		<a href="/SampleEntity/Add" class="btn btn-success">Add</a>
+	</div>
+</div>

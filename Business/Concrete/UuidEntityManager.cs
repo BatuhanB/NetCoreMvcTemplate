@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Utilities.Results.Concrete;
+using Core.Utilities.Results.Abstract;
 
 namespace Business.Concrete
 {
@@ -20,7 +21,7 @@ namespace Business.Concrete
         }
 
 
-        public Result Add(UuidEntity entity)
+        public IResult Add(UuidEntity entity)
         {
             try
             {
@@ -33,7 +34,7 @@ namespace Business.Concrete
             }
         }
 
-        public Result Update(UuidEntity entity)
+        public IResult Update(UuidEntity entity)
         {
             try
             {
@@ -46,7 +47,7 @@ namespace Business.Concrete
             }
         }
 
-        public Result Delete(Guid id)
+        public IResult Delete(Guid id)
         {
             try
             {
@@ -60,7 +61,7 @@ namespace Business.Concrete
             }
         }
 
-        public DataResult<UuidEntity> GetById(Guid id)
+        public IDataResult<UuidEntity> GetById(Guid id)
         {
             try
             {
@@ -72,7 +73,7 @@ namespace Business.Concrete
             }
         }
 
-        public DataResult<List<UuidEntity>> GetAll()
+        public IDataResult<List<UuidEntity>> GetAll()
         {
             try
             {

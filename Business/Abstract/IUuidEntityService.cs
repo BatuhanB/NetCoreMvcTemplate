@@ -5,15 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Utilities.Results.Concrete;
+using Core.Utilities.Results.Abstract;
 
 namespace Business.Abstract
 {
     public interface IUuidEntityService
     {
-        Result Add(UuidEntity entity);
-        Result Update(UuidEntity entity);
-        Result Delete(Guid id);
-        DataResult<UuidEntity> GetById(Guid id);
-        DataResult<List<UuidEntity>> GetAll();
+        IResult Add(UuidEntity entity);
+        IResult Update(UuidEntity entity);
+        IResult Delete(Guid id);
+        IDataResult<UuidEntity> GetById(Guid id);
+        IDataResult<List<UuidEntity>> GetAll();
     }
 }

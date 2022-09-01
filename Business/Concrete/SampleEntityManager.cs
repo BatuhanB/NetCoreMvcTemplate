@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Business.Constants;
 using Core.Utilities.Results.Concrete;
+using Core.Utilities.Results.Abstract;
 
 namespace Business.Concrete
 {
@@ -20,7 +22,7 @@ namespace Business.Concrete
         }
 
 
-        public Result Add(SampleEntity entity)
+        public IResult Add(SampleEntity entity)
         {
             try
             {
@@ -34,7 +36,7 @@ namespace Business.Concrete
             
         }
 
-        public Result Update(SampleEntity entity)
+        public IResult Update(SampleEntity entity)
         {
             try
             {
@@ -47,7 +49,7 @@ namespace Business.Concrete
             }
         }
 
-        public Result Delete(int id)
+        public IResult Delete(int id)
         {
             try
             {
@@ -61,7 +63,7 @@ namespace Business.Concrete
             }
         }
 
-        public DataResult<SampleEntity> GetById(int id)
+        public IDataResult<SampleEntity> GetById(int id)
         {
             try
             {
@@ -73,15 +75,15 @@ namespace Business.Concrete
             }
         }
 
-        public DataResult<List<SampleEntity>> GetAll()
+        public IDataResult<List<SampleEntity>> GetAll()
         {
             try
             {
-                return new SuccessDataResult<List<SampleEntity>>("Data has been successfully listed.",_entityDal.GetAll());
+                return new SuccessDataResult<List<SampleEntity>>(Messages.SuccessDataListed,_entityDal.GetAll());
             }
             catch (Exception)
             {
-                return new ErrorDataResult<List<SampleEntity>>();
+                return new ErrorDataResult<List<SampleEntity>>(Messages.ErrorDataListed);
             }
         }
     }

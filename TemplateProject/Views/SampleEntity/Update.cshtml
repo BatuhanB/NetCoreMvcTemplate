@@ -1,0 +1,17 @@
+﻿@model Entity.Concrete.SampleEntity
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+	<p style="color: red;">@ViewBag.responseMessage</p>
+	<div class="align-content-center">
+		<form method="post">
+			<input class="form-control" type="text" placeholder="name" name="Name" value="@Model.Name"/>
+			<input class="form-control" type="text" placeholder="description" name="Description" value="@Model.Description"/>
+			<button class="btn btn-outline-dark">Güncelle</button>
+		</form>
+	</div>
+</div>
+

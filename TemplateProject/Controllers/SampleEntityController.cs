@@ -15,39 +15,83 @@ namespace TemplateProject.Controllers
         {
             _sampleEntityService = sampleEntityService;
         }
-
+        [HttpGet]
         public IActionResult Index()
         {
-            SampleEntity sample = new()
-            {
-                Name = "Test Project 3",
-                Description = "This is a test project descripton",
-                CreateDate = DateTime.Now,
-                Status = true
-            };
-            //List<SampleEntity> entities = new List<SampleEntity>();
-            //entities.Add(sample);
-            //_sampleEntityService.Add(sample);
             var entities = _sampleEntityService.GetAll();
+            ViewBag.responseMessage = entities.Message;
             if (entities.IsSuccess)
             {
-                ViewBag.responseMessage = entities.Message;
                 Response.StatusCode = 200;
                 return View(entities.Data);    
             }
-            return View();
+            Response.StatusCode = 400;
+            return View("Index");
         }
+        [HttpGet]
         public IActionResult Add()
         {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Add(SampleEntity sampleEntity)
+        {
+                sampleEntity.CreateDate = DateTime.Now;
+                sampleEntity.Status = true;
+                var result = _sampleEntityService.Add(sampleEntity);
+                ViewBag.message = result.Message;
+                return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var result = _sampleEntityService.GetById(id);
+            ViewBag.responseMessage = result.Message;
+            if (result.IsSuccess)
+            {
+                Response.StatusCode = 200;
+                return View("Update",result.Data);
+            }
+            Response.StatusCode = 400;
+            return View("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Update(SampleEntity sampleEntity)
+        {
+            sampleEntity.CreateDate = DateTime.Now;
+            sampleEntity.Status = true;
+            _sampleEntityService.Update(sampleEntity);
             return RedirectToAction("Index");
         }
-        public IActionResult Update()
+
+        
+        public IActionResult Delete(int id)
         {
-            return RedirectToAction("Index");
+            var result = _sampleEntityService.Delete(id);
+            if (result.IsSuccess)
+            {
+                Response.StatusCode = 200;
+                return RedirectToAction("Index");    
+            }
+            Response.StatusCode = 500;
+            return View("Index");
         }
-        public IActionResult Delete()
+
+        
+        public IActionResult ChangeFalse(int id)
         {
-            return RedirectToAction("Index");
+            var result = _sampleEntityService.GetById(id);
+            result.Data.Status = false;
+            var result2 = _sampleEntityService.Update(result.Data);
+            if (result2.IsSuccess)
+            {
+                Response.StatusCode = 200;
+                return RedirectToAction("Index");
+            }
+            Response.StatusCode = 400;
+            return View("Index");
         }
     }
 }

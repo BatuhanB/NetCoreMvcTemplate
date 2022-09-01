@@ -7,3 +7,5 @@ This project aim to Asp.Net Core Mvc Layered Architecture template.
 - Entity Framework
 - Code First Approach
 - Model View Controller Structure 
+- Error - Success Messages
+- Fluent Validation

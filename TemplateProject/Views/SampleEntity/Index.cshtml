@@ -33,10 +33,17 @@
 						<td>@item.Name</td>
 						<td>@item.Description</td>
 						<td>@DateTime.Parse(@item.CreateDate.ToString(CultureInfo.CurrentCulture)).ToString("yyyy MMMM dd")</td>
-						<td>@item.Status</td>
+						@if (@item.Status)
+						{
+							<td style="background-color: #43f527">@item.Status</td>
+						}
+						else
+						{
+							<td style="background-color: #ff3629">@item.Status</td>
+						}
 						<td><a href="/SampleEntity/Delete/@item.Id" class="btn btn-danger">Delete</a></td>
-						<td><a href="/SampleEntity/ChangeFalse/@item.Id" class="btn btn-danger">To Passive</a></td>
-						<td><a href="/SampleEntity/Update/@item.Id" class="btn btn-danger">Update</a></td>
+						<td><a href="/SampleEntity/ChangeStatus/@item.Id" class="btn btn-info">Status</a></td>
+						<td><a href="/SampleEntity/Update/@item.Id" class="btn btn-warning">Update</a></td>
 					</tr>
 				</tbody>
 			}

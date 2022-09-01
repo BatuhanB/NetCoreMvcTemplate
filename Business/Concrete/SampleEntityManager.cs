@@ -86,5 +86,29 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<SampleEntity>>(Messages.ErrorDataListed);
             }
         }
+
+        public IResult ChangeStatus(int id)
+        {
+            try
+            {
+                var result = _entityDal.GetById(x=>x.Id == id);
+                if (result == null) return new ErrorResult();
+                if (result.Status == false)
+                {
+                    result.Status = true;
+                }
+                else if (result.Status)
+                {
+                    result.Status = false;
+                }
+                _entityDal.Update(result);
+                return new SuccessResult();
+
+            }
+            catch (Exception )
+            {
+                return new ErrorResult();
+            }
+        }
     }
 }

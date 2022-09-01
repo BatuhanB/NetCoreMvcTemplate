@@ -16,6 +16,6 @@ namespace Business.Abstract
         IResult Delete(int id);
         IDataResult<SampleEntity> GetById(int id);
         IDataResult<List<SampleEntity>> GetAll();
-
+        IResult ChangeStatus(int id);
     }
 }

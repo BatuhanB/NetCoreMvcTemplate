@@ -3,6 +3,7 @@ using Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace TemplateProject.Controllers
@@ -61,7 +62,6 @@ namespace TemplateProject.Controllers
         public IActionResult Update(SampleEntity sampleEntity)
         {
             sampleEntity.CreateDate = DateTime.Now;
-            sampleEntity.Status = true;
             _sampleEntityService.Update(sampleEntity);
             return RedirectToAction("Index");
         }
@@ -86,6 +86,18 @@ namespace TemplateProject.Controllers
             result.Data.Status = false;
             var result2 = _sampleEntityService.Update(result.Data);
             if (result2.IsSuccess)
+            {
+                Response.StatusCode = 200;
+                return RedirectToAction("Index");
+            }
+            Response.StatusCode = 400;
+            return View("Index");
+        }
+
+        public IActionResult ChangeStatus(int id)
+        {
+            var result = _sampleEntityService.ChangeStatus(id);
+            if (result.IsSuccess)
             {
                 Response.StatusCode = 200;
                 return RedirectToAction("Index");

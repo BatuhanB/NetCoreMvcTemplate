@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fTGQY5R0c5tEtVlIRP28xwDgMblB/llVey1PCE92Afh/OEst9vlf4oj5EUTQVP2lwcRv9hKIaSdRk1ARk3l2BA==",
+  "dgSpecHash": "u0BgjtpyRsTjwS6zyLUBNqmgQmsYwLTmt4TBnWANyyzHM076pPjtpPR9y4F056xngwnEPgD46GulFUFDPkH3Tg==",
   "success": true,
   "projectFilePath": "C:\\Users\\balib\\source\\repos\\TemplateProject\\TemplateProject\\TemplateProject.csproj",
   "expectedPackageFiles": [
@@ -25,6 +25,7 @@
     "C:\\Users\\balib\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.17\\microsoft.entityframeworkcore.design.5.0.17.nupkg.sha512",
     "C:\\Users\\balib\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.17\\microsoft.entityframeworkcore.relational.5.0.17.nupkg.sha512",
     "C:\\Users\\balib\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.17\\microsoft.entityframeworkcore.sqlserver.5.0.17.nupkg.sha512",
+    "C:\\Users\\balib\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.17\\microsoft.entityframeworkcore.tools.5.0.17.nupkg.sha512",
     "C:\\Users\\balib\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\balib\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
     "C:\\Users\\balib\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",

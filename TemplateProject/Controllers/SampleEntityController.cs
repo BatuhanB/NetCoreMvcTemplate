@@ -3,6 +3,7 @@ using Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,11 +30,27 @@ namespace TemplateProject.Controllers
             Response.StatusCode = 400;
             return View("Index");
         }
+
         [HttpGet]
         public IActionResult Add()
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult DataTableIndex()
+        {
+            var entities = _sampleEntityService.GetAll();
+            ViewBag.responseMessage = entities.Message;
+            if (entities.IsSuccess)
+            {
+                Response.StatusCode = 200;
+                return View(entities.Data);    
+            }
+            Response.StatusCode = 400;
+            return View("DataTableIndex");
+        }
+
         [HttpPost]
         public IActionResult Add(SampleEntity sampleEntity)
         {

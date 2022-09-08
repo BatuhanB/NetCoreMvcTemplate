@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TemplateProject.Controllers
@@ -78,8 +79,12 @@ namespace TemplateProject.Controllers
         [HttpPost]
         public IActionResult Update(SampleEntity sampleEntity)
         {
-            sampleEntity.CreateDate = DateTime.Now;
-            _sampleEntityService.Update(sampleEntity);
+            var result = _sampleEntityService.GetById(sampleEntity.Id);
+            result.Data.CreateDate = DateTime.Now;
+            result.Data.Status = true;
+            result.Data.Description = sampleEntity.Description;
+            result.Data.Name = sampleEntity.Name;
+            _sampleEntityService.Update(result.Data);
             return RedirectToAction("Index");
         }
 
